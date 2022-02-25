@@ -12,34 +12,34 @@ use App\Service\CalculatorService;
 #[Route('/api/calculator', name: 'api_calculator')]
 class APICalculatorController extends AbstractController
 {
-    #[Route('/addition', name: 'api_calculator_addition')]
+    #[Route('/add', name: 'api_calculator_addition')]
     #[Methode("POST")]
-    public function addition(Request $request, CalculatorService $calculator): Response
+    public function add(Request $request, CalculatorService $calculator): Response
     {
         $data = json_decode($request->getContent(), true);
         $value1 = intval($data['value1']);
         $value2 = intval($data['value2']);
-        return $this->json(['value' => $calculator->addition($value1, $value2)]);
+        return $this->json(['value' => $calculator->add($value1, $value2)]);
     }
 
-    #[Route('/substraction', name: 'api_calculator_substraction')]
+    #[Route('/subtract', name: 'api_calculator_substraction')]
     #[Methode("POST")]
-    public function substraction(Request $request, CalculatorService $calculator): Response
+    public function subtract(Request $request, CalculatorService $calculator): Response
     {
         $data = json_decode($request->getContent(), true);
         $value1 = intval($data['value1']);
         $value2 = intval($data['value2']);
-        return $this->json(['value' => $calculator->substraction($value1, $value2)]);
+        return $this->json(['value' => $calculator->subtract($value1, $value2)]);
     }
 
-    #[Route('/division', name: 'api_calculator_division')]
+    #[Route('/divide', name: 'api_calculator_division')]
     #[Methode("POST")]
-    public function division(Request $request, CalculatorService $calculator): Response
+    public function divide(Request $request, CalculatorService $calculator): Response
     {
         $data = json_decode($request->getContent(), true);
         $value1 = intval($data['value1']);
         $value2 = intval($data['value2']);
-        return $this->json(['value' => $calculator->division($value1, $value2)]);
+        return $this->json(['value' => $calculator->divide($value1, $value2)]);
     }
 
     #[Route('/modulo', name: 'api_calculator_modulo')]
@@ -57,8 +57,6 @@ class APICalculatorController extends AbstractController
     public function square(Request $request, CalculatorService $calculator): Response
     {
         $data = json_decode($request->getContent(), true);
-        $value1 = intval($data['value1']);
-        $value2 = intval($data['value2']);
-        return $this->json(['value' => $calculator->square($value1, $value2)]);
+        return $this->json(['value' => $calculator->square(intval($data['value']))]);
     }
 }

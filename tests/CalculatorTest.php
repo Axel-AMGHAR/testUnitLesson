@@ -12,7 +12,7 @@ class CalculatorTest extends KernelTestCase
         self::bootKernel();
         $container = static::getContainer();
         $calculatorService = $container->get(CalculatorService::class);
-        $result  = $calculatorService->addition(1,1);
+        $result  = $calculatorService->add(1,1);
         $this->assertEquals(2, $result);
     }
 
@@ -21,7 +21,7 @@ class CalculatorTest extends KernelTestCase
         self::bootKernel();
         $container = static::getContainer();
         $calculatorService = $container->get(CalculatorService::class);
-        $result  = $calculatorService->subscription(1,1);
+        $result  = $calculatorService->subtract(1,1);
         $this->assertEquals(0, $result);
     }
 
@@ -30,10 +30,11 @@ class CalculatorTest extends KernelTestCase
         self::bootKernel();
         $container = static::getContainer();
         $calculatorService = $container->get(CalculatorService::class);
-        $this->assertEquals(1, $calculatorService->division(1,1));
-        $this->assertEquals(10, $calculatorService->division(10,1));
-        $this->assertEquals(5, $calculatorService->division(10,2));
-        $this->assertEquals(null, $calculatorService->division(1,0));
+        $this->assertEquals(1, $calculatorService->divide(1,1));
+        $this->assertEquals(10, $calculatorService->divide(10,1));
+        $this->assertEquals(5, $calculatorService->divide(10,2));
+        $this->expectException(\DivisionByZeroError::class);
+        $calculatorService->divide(1,0);
     }
 
     public function testModulo(): void

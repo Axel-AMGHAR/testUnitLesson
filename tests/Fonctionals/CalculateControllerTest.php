@@ -12,6 +12,7 @@ class CalculateControllerTest extends WebTestCase
         $client->request('GET', '/');
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'calculatrice');
+        $this->assertPageTitleContains('Hello CalculateController');
     }
 
     public function testAllWebView(): void
