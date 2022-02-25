@@ -1,27 +1,26 @@
 {
   "name": "testjs",
   "version": "0.1.0",
+  "devDependencies": {
+    "jest-watch-typeahead": "^0.6.5",
+    "msw": "^0.38.1",
+    "@testing-library/react-hooks": "^7.0.2",
+    "@hotwired/stimulus": "^3.0.0",
+    "@popperjs/core": "^2.11.2",
+    "@symfony/stimulus-bridge": "^3.0.0",
+    "@symfony/webpack-encore": "^1.7.0",
+    "bootstrap": "^5.1.3",
+    "bs-custom-file-input": "^1.3.4",
+    "core-js": "^3.0.0",
+    "jquery": "^3.6.0",
+    "node-sass": "^7.0.1",
+    "regenerator-runtime": "^0.13.2",
+    "sass-loader": "^12.6.0",
+    "webpack-notifier": "^1.6.0"
+  },
+  "license": "UNLICENSED",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.3",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.4.0",
-    "@types/node": "^16.11.25",
-    "@types/react": "^17.0.39",
-    "@types/react-dom": "^17.0.11",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "5.0.0",
-    "typescript": "^4.5.5",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -40,9 +39,28 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@testing-library/react-hooks": "^7.0.2",
-    "jest-watch-typeahead": "^0.6.5",
-    "msw": "^0.38.1"
+  "scripts": {
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "encore": "^0.0.30-beta",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.3",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^16.11.25",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "5.0.0",
+    "typescript": "^4.5.5",
+    "web-vitals": "^2.1.4"
   }
 }

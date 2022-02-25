@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use App\Service\CalculatorService;
+
+#[Route('/api/calculator', name: 'api_calculator')]
+class APICalculatorController extends AbstractController
+{
+    #[Route('/add', name: 'api_calculator_addition')]
+    #[Methode("POST")]
+    public function add(Request $request, CalculatorService $calculator): Response
+    {
+        $data = json_decode($request->getContent(), true);
+        $value1 = intval($data['value1']);
+        $value2 = intval($data['value2']);
+        return $this->json(['value' => $calculator->add($value1, $value2)]);
+    }
+
+    #[Route('/subtract', name: 'api_calculator_substraction')]
+    #[Methode("POST")]
+    public function subtract(Request $request, CalculatorService $calculator): Response
+    {
+        $data = json_decode($request->getContent(), true);
+        $value1 = intval($data['value1']);
+        $value2 = intval($data['value2']);
+        return $this->json(['value' => $calculator->subtract($value1, $value2)]);
+    }
+
+    #[Route('/divide', name: 'api_calculator_division')]
+    #[Methode("POST")]
+    public function divide(Request $request, CalculatorService $calculator): Response
+    {
+        $data = json_decode($request->getContent(), true);
+        $value1 = intval($data['value1']);
+        $value2 = intval($data['value2']);
+        return $this->json(['value' => $calculator->divide($value1, $value2)]);
+    }
+
+    #[Route('/modulo', name: 'api_calculator_modulo')]
+    #[Methode("POST")]
+    public function modulo(Request $request, CalculatorService $calculator): Response
+    {
+        $data = json_decode($request->getContent(), true);
+        $value1 = intval($data['value1']);
+        $value2 = intval($data['value2']);
+        return $this->json(['value' => $calculator->modulo($value1, $value2)]);
+    }
+
+    #[Route('/square', name: 'api_calculator_square')]
+    #[Methode("POST")]
+    public function square(Request $request, CalculatorService $calculator): Response
+    {
+        $data = json_decode($request->getContent(), true);
+        return $this->json(['value' => $calculator->square(intval($data['value']))]);
+    }
+}

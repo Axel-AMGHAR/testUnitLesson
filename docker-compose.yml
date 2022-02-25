@@ -1,7 +1,44 @@
-version: "3"
+version: "3.8"
 services:
+  # PHP service
+  app:
+    build: .
+    container_name: php-app
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - app-network
+
+  # MySQL database service
+  db:
+    image: mysql:5.7
+    container_name: mysql-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    env_file:
+      - ./.env
+    networks:
+      - app-network
+
+  # Nginx service
+  nginx:
+    image: nginx:alpine
+    container_name: php-nginx
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-network
   node:
-    image: node:14.15
+    image: node:latest
     user: node
     tty: true
     working_dir: /home/node/
@@ -9,3 +46,12 @@ services:
       - ./:/home/node/
     ports:
       - 3000:3000
+      - 9001:9001
+    network_mode: "bridge"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+networks:
+  app-network:
+    driver: bridge
+
