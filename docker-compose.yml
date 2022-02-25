@@ -37,7 +37,20 @@ services:
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - app-network
-
+  node:
+    image: node:latest
+    user: node
+    tty: true
+    working_dir: /home/node/
+    volumes:
+      - ./:/home/node/
+    ports:
+      - 3000:3000
+      - 9001:9001
+    network_mode: "bridge"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
 networks:
   app-network:
     driver: bridge
